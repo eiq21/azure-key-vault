@@ -1,12 +1,12 @@
-﻿using Azure.Security.KeyVault.Secrets;
+using Azure.Security.KeyVault.Secrets;
 
-namespace Demo.AzKeyVault.Identity.API.Configurations;
+namespace Demo.AzKeyVault.Identity.API.Providers;
 
-public class KeyVaultManager : IKeyVaultManager
+public class SecretProvider : ISecretProvider
 {
     private readonly SecretClient secretClient;
 
-    public KeyVaultManager(SecretClient secretClient)
+    public SecretProvider(SecretClient secretClient)
     {
         this.secretClient = secretClient;
     }
@@ -23,4 +23,3 @@ public class KeyVaultManager : IKeyVaultManager
         }
     }
 }
-
