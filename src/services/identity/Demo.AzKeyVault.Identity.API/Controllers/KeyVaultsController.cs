@@ -1,4 +1,4 @@
-using Demo.AzKeyVault.Identity.API.Configurations;
+using Demo.AzKeyVault.Identity.API.Providers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.AzKeyVault.Identity.API.Controllers;
@@ -7,17 +7,17 @@ namespace Demo.AzKeyVault.Identity.API.Controllers;
 [Route("[controller]")]
 public class KeyVaultsController : ControllerBase
 {
-    private readonly IKeyVaultManager keyVaultManager;
+    private readonly ISecretProvider secretProvider;
 
-    public KeyVaultsController(IKeyVaultManager keyVaultManager)
+    public KeyVaultsController(ISecretProvider secretProvider)
     {
-        this.keyVaultManager = keyVaultManager;
+        this.secretProvider = secretProvider;
     }
 
     [HttpGet()]
     public async Task<ActionResult> Get()
     {
-        var secret = await keyVaultManager.GetSecret("key");
+        var secret = await secretProvider.GetSecret("key");
         if (string.IsNullOrEmpty(secret))
             return NotFound();
         return Ok(secret);
