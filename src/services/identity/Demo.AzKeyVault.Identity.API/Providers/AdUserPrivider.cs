@@ -10,7 +10,7 @@ public class AdUserProvider : IAdUserProvider
           {
               try
               {
-                  var principalContext = new PrincipalContext(ContextType.Domain, "credito.bcp.com.pe");
+                  var principalContext = new PrincipalContext(ContextType.Domain, "your domain");
 
                   UserPrincipal user = UserPrincipal.FindByIdentity(principalContext, SamAccountName);
                   GroupPrincipal group = GroupPrincipal.FindByIdentity(principalContext, groupName);
